@@ -1,0 +1,5 @@
+[2014-авг-07 11:44:50] [main] WARN  Main: Could not save document stuff.docx 
+[2014-авг-07 11:44:59] [main] WARN  Main: Could not save document stuff.docx 
+[2014-авг-07 11:58:28] [main] WARN  Main: Could not save document \tmp\created.docx 
+[2014-авг-07 11:58:28] [main] WARN  Main: File \tmp\test.docx does not exist. 
+[2014-авг-07 11:58:28] [main] WARN  Main: Could not parse \tmp\test.docx 
