@@ -1,3 +1,5 @@
+import com.sun.istack.internal.NotNull;
+import com.sun.istack.internal.Nullable;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 /**
@@ -12,18 +14,22 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
  * To change this template use File | Settings | File Templates.
  */
 public interface WordProcessor {
+    @Nullable
     XWPFDocument parseFile(String fileName);
-    boolean saveDocument(XWPFDocument document, String fileName);
+    boolean saveDocument(@NotNull XWPFDocument document, String fileName);
+    @NotNull
     XWPFDocument createDummyDocument();
     @Deprecated
-    XWPFDocument doStuff(XWPFDocument document);
+    @NotNull
+    XWPFDocument doStuff(@NotNull XWPFDocument document);
 
     /**
      * Add numeric labels after each picture.
      * @param   document    document to be processed
      * @param   prefix      global num prefix to be added before each pic. number
      */
-    XWPFDocument addLabels(XWPFDocument document, String prefix);
+    @NotNull
+    XWPFDocument addLabels(@NotNull XWPFDocument document, String prefix);
 
     /**
      * Add numeric labels after each picture and find markers in text

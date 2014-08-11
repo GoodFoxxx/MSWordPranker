@@ -9,7 +9,7 @@ public class Main {
         DOMConfigurator.configure(Log.getPropertyPath());
         WordProcessor word = new WordProcessorInstance();
         word.saveDocument(word.createDummyDocument(), "tmp/created.docx");
-        XWPFDocument xwpfDocument = word.parseFile("tmp/prem-in.docx");
+        XWPFDocument xwpfDocument = word.parseFile("tmp/test.docx");
 
         word.doStuff(xwpfDocument);
 

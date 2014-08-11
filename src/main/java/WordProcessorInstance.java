@@ -1,10 +1,4 @@
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
-import org.apache.poi.openxml4j.opc.PackagePart;
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBr;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 
 import java.io.*;
 import java.util.*;
@@ -83,14 +77,23 @@ public class WordProcessorInstance implements WordProcessor {
     @Override
     public XWPFDocument doStuff(XWPFDocument document) {
         ArrayList<String> runTextArray = new ArrayList<>();//important to use ArrayList due to index access
-        WindowCollection<String> windowCollection = new WindowCollectionInstance<>();
+        StringCollection stringCollection = new StringCollectionInstance();
         for(Iterator<XWPFParagraph> paragraphIterator = document.getParagraphsIterator(); paragraphIterator.hasNext();){
+            runTextArray.clear();
             XWPFParagraph paragraph =  paragraphIterator.next();
             for (XWPFRun run : paragraph.getRuns()){
                 runTextArray.add(run.getText(0));
             }
-            windowCollection.load(runTextArray);
-            windowCollection.findAndReplace("KKL###","TTY$$$");
+            stringCollection.findAndReplace(runTextArray,"ABC###","Предмет #1");
+            stringCollection.findAndReplace(runTextArray,"ловеч","бураш");
+
+            for (int i=0; i< runTextArray.size(); i++){
+                Log.getInstance().trace(runTextArray.get(i));
+            }
+
+            for (int i=0; i< paragraph.getRuns().size(); i++){
+                paragraph.getRuns().get(i).setText(runTextArray.get(i),0);
+            }
         }
         return document;
     }
